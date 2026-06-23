@@ -4,7 +4,7 @@ module.exports = {
     name: Events.GuildMemberRemove,
     async execute(member) {
 
-        const channelId = "ID_KANAŁU_POŻEGNALNEGO";
+        const channelId = "1502460979177459723";
 
         const channel = member.guild.channels.cache.get(channelId);
         if (!channel) return;
