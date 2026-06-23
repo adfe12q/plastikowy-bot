@@ -1,2 +1,0 @@
-# plastikowy-bot
-dd
