@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const commands = [];
+
 const commandsPath = path.join(__dirname, 'commands');
 
 function loadCommands(dir) {
@@ -21,7 +22,7 @@ function loadCommands(dir) {
 
 loadCommands(commandsPath);
 
-const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
+const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
 (async () => {
     try {
