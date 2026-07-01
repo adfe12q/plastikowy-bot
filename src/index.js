@@ -55,7 +55,7 @@ client.once('ready', () => {
 
 
 // =========================
-// OBSŁUGA KOMEND
+// OBSŁUGA KOMEND (POPRAWIONA)
 // =========================
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
@@ -67,7 +67,19 @@ client.on('interactionCreate', async interaction => {
         await command.execute(interaction);
     } catch (err) {
         console.error(err);
-        await interaction.reply({ content: 'Wystąpił błąd przy wykonywaniu komendy.', ephemeral: true });
+
+        // 🔥 ZABEZPIECZENIE PRZED CRASHEM
+        if (interaction.deferred || interaction.replied) {
+            await interaction.followUp({
+                content: 'Wystąpił błąd przy wykonywaniu komendy.',
+                ephemeral: true
+            });
+        } else {
+            await interaction.reply({
+                content: 'Wystąpił błąd przy wykonywaniu komendy.',
+                ephemeral: true
+            });
+        }
     }
 });
 
